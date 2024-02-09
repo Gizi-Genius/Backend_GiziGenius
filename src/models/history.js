@@ -2,6 +2,8 @@
 const {
   Model
 } = require('sequelize');
+const { v4: uuidv4 } = require("uuid");
+
 module.exports = (sequelize, DataTypes) => {
   class history extends Model {
     /**
@@ -17,7 +19,8 @@ module.exports = (sequelize, DataTypes) => {
     history_id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
-      field: "history_id"
+      field: "history_id",
+      defaultValue: uuidv4()
     },
     user_id: DataTypes.INTEGER,
     log_date: DataTypes.DATE

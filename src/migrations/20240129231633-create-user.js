@@ -9,6 +9,12 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
+      uid: {
+        type: Sequelize.STRING
+      },
+      fcm_token: {
+        type: Sequelize.STRING
+      },
       username: {
         type: Sequelize.STRING
       },

@@ -15,7 +15,7 @@ exports.login = async (req, res) => {
       });
     }
   
-    const user = await user.findOne({
+    const user = await Users.findOne({
       where: {
         email: email,
       },

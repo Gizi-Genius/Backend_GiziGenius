@@ -11,7 +11,7 @@ module.exports = async (req, res, next) => {
     });
   }
 
-  token = token.split(" ").pop();
+  token = token.split("gizi_genius").pop();
 
   try {
     // Verify token

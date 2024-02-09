@@ -2,8 +2,10 @@
 const {
   Model
 } = require('sequelize');
+const { v4: uuidv4 } = require("uuid");
+
 module.exports = (sequelize, DataTypes) => {
-  class target extends Model {
+  class Target extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
@@ -13,11 +15,12 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
     }
   }
-  target.init({
+  Target.init({
     target_id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
-      field: "target_id"
+      field: "target_id",
+      defaultValue: uuidv4()
     },
     user_id: DataTypes.INTEGER,
     karbohidrat: DataTypes.DOUBLE,
@@ -25,7 +28,7 @@ module.exports = (sequelize, DataTypes) => {
     lemak: DataTypes.DOUBLE
   }, {
     sequelize,
-    modelName: 'target',
+    modelName: 'Target',
   });
-  return target;
+  return Target;
 };

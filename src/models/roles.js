@@ -2,6 +2,8 @@
 const {
   Model
 } = require('sequelize');
+const { v4: uuidv4 } = require("uuid");
+
 module.exports = (sequelize, DataTypes) => {
   class roles extends Model {
     /**
@@ -17,13 +19,13 @@ module.exports = (sequelize, DataTypes) => {
     roles_id:{
       type: DataTypes.INTEGER,
       primaryKey: true,
-      field: "roles_id"
+      field: "roles_id",
+      defaultValue: uuidv4()
     },
-    user_id: DataTypes.INTEGER,
     role_name: DataTypes.STRING
   }, {
     sequelize,
-    modelName: 'roles',
+    modelName: 'Roles',
   });
   return roles;
 };

@@ -3,13 +3,6 @@ module.exports = (express, app) => {
     // const web_default = ``;
   
     require("./api/auth.routes")(express, app, api_default);
-
-
-    app.use((req, res, next) => {
-      res.status(404).render("404", {
-        title: "404 - Page not found",
-        layout: "admin/layouts/login_layout",
-      });
-    });
+    require("./api/user.routes")(express, app, api_default);
   };
   
