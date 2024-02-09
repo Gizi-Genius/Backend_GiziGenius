@@ -2,8 +2,10 @@
 const {
   Model
 } = require('sequelize');
+const { v4: uuidv4 } = require("uuid");
+
 module.exports = (sequelize, DataTypes) => {
-  class makanan extends Model {
+  class Makanan extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
@@ -11,13 +13,15 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      Makanan.belongsTo(models.User, { foreignKey: "user_id"});
     }
   }
-  makanan.init({
+  Makanan.init({
     makanan_id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
-      field: "makanan_id"
+      field: "makanan_id",
+      defaultValue: uuidv4()
     },
     user_id: DataTypes.INTEGER,
     nama_makanan: DataTypes.STRING,
@@ -29,7 +33,7 @@ module.exports = (sequelize, DataTypes) => {
     takaran: DataTypes.DOUBLE
   }, {
     sequelize,
-    modelName: 'makanan',
+    modelName: 'Makanan',
   });
-  return makanan;
+  return Makanan;
 };

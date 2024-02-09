@@ -4,7 +4,6 @@ const app = express();
 const session = require("express-session");
 const methodOverride = require("method-override");
 const cookieParser = require("cookie-parser");
-const flash = require("connect-flash");
 const path = require('path');
 
 // port
@@ -25,7 +24,6 @@ app.use(
     saveUninitialized: false,
   })
 );
-app.use(flash());
 
 
 // Database

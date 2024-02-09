@@ -34,6 +34,7 @@ const StatusCode = {
     Wrongpass: "Wrong password",
     Orderfailed: "order status not valid",
     OrderNotFound: "order not found",
+    MakananCreated: "Data created successfully"
   };
   
   module.exports = {
