@@ -28,9 +28,9 @@ const Createmakanan = (req, res) => {
       takaran
     })
     .then((result) => {
-      res.send(result);
       return res.status(StatusCode.CREATED).json({
-        message: ResponseMessage.MakananCreated
+        message: ResponseMessage.MakananCreated,
+        result
       })
       
     })
@@ -41,6 +41,9 @@ const Createmakanan = (req, res) => {
       })
     });
 }
+
+
+
 
 module.exports = {
     Createmakanan

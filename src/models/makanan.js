@@ -1,7 +1,5 @@
-'use strict';
-const {
-  Model
-} = require('sequelize');
+"use strict";
+const { Model } = require("sequelize");
 const { v4: uuidv4 } = require("uuid");
 
 module.exports = (sequelize, DataTypes) => {
@@ -13,27 +11,30 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Makanan.belongsTo(models.User, { foreignKey: "user_id"});
+      Makanan.belongsTo(models.Users, { foreignKey: "user_id" });
     }
   }
-  Makanan.init({
-    makanan_id: {
-      type: DataTypes.INTEGER,
-      primaryKey: true,
-      field: "makanan_id",
-      defaultValue: uuidv4()
+  Makanan.init(
+    {
+      makanan_id: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        field: "makanan_id",
+        defaultValue: uuidv4(),
+      },
+      user_id: DataTypes.INTEGER,
+      nama_makanan: DataTypes.STRING,
+      jenis_makanan: DataTypes.STRING,
+      kalori: DataTypes.DOUBLE,
+      protein: DataTypes.DOUBLE,
+      karbohidrat: DataTypes.DOUBLE,
+      lemak: DataTypes.DOUBLE,
+      takaran: DataTypes.DOUBLE,
     },
-    user_id: DataTypes.INTEGER,
-    nama_makanan: DataTypes.STRING,
-    jenis_makanan: DataTypes.STRING,
-    kalori: DataTypes.DOUBLE,
-    protein: DataTypes.DOUBLE,
-    karbohidrat: DataTypes.DOUBLE,
-    lemak: DataTypes.DOUBLE,
-    takaran: DataTypes.DOUBLE
-  }, {
-    sequelize,
-    modelName: 'Makanan',
-  });
+    {
+      sequelize,
+      modelName: "Makanan",
+    }
+  );
   return Makanan;
 };
