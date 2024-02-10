@@ -6,7 +6,7 @@ const { v4: uuidv4 } = require("uuid");
 const bcrypt = require('bcrypt');
 
 module.exports = (sequelize, DataTypes) => {
-  class User extends Model {
+  class Users extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
@@ -16,7 +16,7 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
     }
   }
-  User.init({
+  Users.init({
     user_id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
@@ -36,7 +36,7 @@ module.exports = (sequelize, DataTypes) => {
     umur: DataTypes.INTEGER
   }, {
     sequelize,
-    modelName: 'User',
+    modelName: 'Users',
     hooks: {
       beforeCreate: async (user) => {
         if (user.password) {
@@ -54,5 +54,5 @@ module.exports = (sequelize, DataTypes) => {
       },
     },
   });
-  return User;
+  return Users;
 };
