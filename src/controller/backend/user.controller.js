@@ -1,4 +1,4 @@
-const { Makanan } = require("../../models");
+const { Makanan, Users } = require("../../models");
 const { StatusCode, ResponseMessage } = require("../../helpers/httpStatus");
 const response = require("../../helpers/response");
 // Makanan
@@ -51,7 +51,61 @@ const Createmakanan = (req, res) => {
     });
 };
 
+const Addprofile = async (req, res) => {
+  let {
+
+  } = req.body;
+}
+
+
+
+// Update Profile
+const updateUserProfile = async (req, res) => {
+  let {
+    user_id,
+    username,
+    email,
+    password,
+    olahraga,
+    gender,
+    berat_badan,
+    tinggi_badan,
+    target,
+    umur,
+    photo
+  } = req.body;
+
+  try {
+    const updateProfile = await Users.update({
+      username,
+      email,
+      password,
+      olahraga,
+      gender,
+      berat_badan,
+      tinggi_badan,
+      target,
+      umur,
+      photo
+    },
+    {
+      where: {
+        user_id
+      }
+    });
+
+    return res.status(StatusCode.OK).json({
+      message: ResponseMessage.Updated
+    })
+  } catch (error) {
+    return res.status(StatusCode.BAD_REQUEST).json({
+      message: ResponseMessage.FailUpdated
+    })
+  }
+}
+
 module.exports = {
   Createmakanan,
-  GetallMakanan
+  GetallMakanan,
+  updateUserProfile
 };
