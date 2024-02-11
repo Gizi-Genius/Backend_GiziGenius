@@ -16,43 +16,47 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
     }
   }
-  Users.init({
-    user_id: {
-      type: DataTypes.INTEGER,
-      primaryKey: true,
-      field: "user_id",
-      defaultValue: uuidv4()
-    },
-    uid: DataTypes.STRING,
-    fcm_token: DataTypes.STRING,
-    username: DataTypes.STRING,
-    email: DataTypes.STRING,
-    password: DataTypes.STRING,
-    olahraga: DataTypes.STRING,
-    gender: DataTypes.STRING,
-    berat_badan: DataTypes.DOUBLE,
-    target: DataTypes.STRING,
-    tinggi_badan: DataTypes.INTEGER,
-    umur: DataTypes.INTEGER
-  }, {
-    sequelize,
-    modelName: 'Users',
-    hooks: {
-      beforeCreate: async (user) => {
-        if (user.password) {
-          const saltRounds = 10;
-          const hashedPassword = await bcrypt.hash(user.password, saltRounds);
-          user.password = hashedPassword;
-        }
+  Users.init(
+    {
+      user_id: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        field: "user_id",
+        defaultValue: uuidv4(),
       },
-      beforeUpdate: async (user) => {
-        if (user.changed('password')) {
-          const saltRounds = 10;
-          const hashedPassword = await bcrypt.hash(user.password, saltRounds);
-          user.password = hashedPassword;
-        }
-      },
+      uid: DataTypes.STRING,
+      fcm_token: DataTypes.STRING,
+      username: DataTypes.STRING,
+      email: DataTypes.STRING,
+      password: DataTypes.STRING,
+      photo: DataTypes.STRING,
+      olahraga: DataTypes.STRING,
+      gender: DataTypes.STRING,
+      berat_badan: DataTypes.DOUBLE,
+      target: DataTypes.STRING,
+      tinggi_badan: DataTypes.INTEGER,
+      umur: DataTypes.INTEGER,
     },
-  });
+    {
+      sequelize,
+      modelName: "Users",
+      hooks: {
+        beforeCreate: async (user) => {
+          if (user.password) {
+            const saltRounds = 10;
+            const hashedPassword = await bcrypt.hash(user.password, saltRounds);
+            user.password = hashedPassword;
+          }
+        },
+        beforeUpdate: async (user) => {
+          if (user.changed("password")) {
+            const saltRounds = 10;
+            const hashedPassword = await bcrypt.hash(user.password, saltRounds);
+            user.password = hashedPassword;
+          }
+        },
+      },
+    }
+  );
   return Users;
 };

@@ -11,11 +11,11 @@ module.exports = async (req, res, next) => {
     });
   }
 
-  token = token.split("gizi_genius").pop();
+  token = token.split(" ").pop();
 
   try {
     // Verify token
-    jwt.verify(token, "secret", (err, decoded) => {
+    jwt.verify(token, "gizi_genius", (err, decoded) => {
       if (err) {
         return res.status(401).send({
           message: `Unauthorized!`,
