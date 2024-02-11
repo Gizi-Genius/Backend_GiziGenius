@@ -1,52 +1,52 @@
-'use strict';
+"use strict";
 
-const { sequelize } = require('../models');
+const { sequelize } = require("../models");
 
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('Makanans', {
+    await queryInterface.createTable("Makanans", {
       makanan_id: {
         allowNull: false,
         primaryKey: true,
         type: Sequelize.UUID,
-        defaultValue: Sequelize.UUIDV4
+        defaultValue: Sequelize.UUIDV4,
       },
       user_id: {
-        type: Sequelize.INTEGER
+        type: Sequelize.UUID,
       },
       nama_makanan: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       jenis_makanan: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       kalori: {
-        type: Sequelize.DOUBLE
+        type: Sequelize.DOUBLE,
       },
       protein: {
-        type: Sequelize.DOUBLE
+        type: Sequelize.DOUBLE,
       },
       karbohidrat: {
-        type: Sequelize.DOUBLE
+        type: Sequelize.DOUBLE,
       },
       lemak: {
-        type: Sequelize.DOUBLE
+        type: Sequelize.DOUBLE,
       },
       takaran: {
-        type: Sequelize.DOUBLE
+        type: Sequelize.DOUBLE,
       },
       createdAt: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
       },
       updatedAt: {
         allowNull: false,
-        type: Sequelize.DATE
-      }
+        type: Sequelize.DATE,
+      },
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('Makanans');
-  }
+    await queryInterface.dropTable("Makanans");
+  },
 };

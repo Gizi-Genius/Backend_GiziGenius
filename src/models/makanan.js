@@ -17,12 +17,12 @@ module.exports = (sequelize, DataTypes) => {
   Makanan.init(
     {
       makanan_id: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.UUID,
         primaryKey: true,
         field: "makanan_id",
         defaultValue: uuidv4(),
       },
-      user_id: DataTypes.INTEGER,
+      user_id: DataTypes.UUID,
       nama_makanan: DataTypes.STRING,
       jenis_makanan: DataTypes.STRING,
       kalori: DataTypes.DOUBLE,

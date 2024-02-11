@@ -126,7 +126,6 @@ exports.googleValidate = (req, res) => {
             uid,
             nama: data.displayName,
             email: data.email,
-            role_id: 2,
             isActive: true,
             photo: data.photoURL,
           }).then((result) => {

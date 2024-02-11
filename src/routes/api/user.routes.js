@@ -1,13 +1,20 @@
-const { Createmakanan } = require("../../controller/backend/user.controller");
+const { Createmakanan, GetallMakanan } = require("../../controller/backend/user.controller");
 const authjwt = require("../../middlewares/auth.jwt");
 
-
 module.exports = (express, app, default_router) => {
-    const router = express.Router();
+  const router = express.Router();
 
-    router.post("/makanan",
+  router.post(
+    "/makanan",
+    [authjwt],
     Createmakanan
-    );
+  );
 
-    app.use(default_router, router);
+  router.get(
+    "/makanan",
+    [authjwt],
+    GetallMakanan
+  )
+
+  app.use(default_router, router);
 };
