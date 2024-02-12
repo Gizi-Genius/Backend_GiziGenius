@@ -51,14 +51,45 @@ const Createmakanan = (req, res) => {
     });
 };
 
-const Addprofile = async (req, res) => {
+
+// Update Profile
+const AddUserProfile = async (req, res) => {
   let {
-
+    user_id,
+    olahraga,
+    gender,
+    berat_badan,
+    tinggi_badan,
+    target,
+    umur,
   } = req.body;
-}
 
+  try {
+    const addUserProfile = await Users.create(
+      {
+        olahraga,
+        gender,
+        berat_badan,
+        tinggi_badan,
+        target,
+        umur,
+      },
+      {
+        where: {
+          user_id,
+        },
+      }
+    );
 
-
+    return res.status(StatusCode.OK).json({
+      message: ResponseMessage.Added,
+    });
+  } catch (error) {
+    return res.status(StatusCode.BAD_REQUEST).json({
+      message: ResponseMessage.FailAdded,
+    });
+  }
+};
 // Update Profile
 const updateUserProfile = async (req, res) => {
   let {
@@ -72,40 +103,43 @@ const updateUserProfile = async (req, res) => {
     tinggi_badan,
     target,
     umur,
-    photo
+    photo,
   } = req.body;
 
   try {
-    const updateProfile = await Users.update({
-      username,
-      email,
-      password,
-      olahraga,
-      gender,
-      berat_badan,
-      tinggi_badan,
-      target,
-      umur,
-      photo
-    },
-    {
-      where: {
-        user_id
+    const updateProfile = await Users.update(
+      {
+        username,
+        email,
+        password,
+        olahraga,
+        gender,
+        berat_badan,
+        tinggi_badan,
+        target,
+        umur,
+        photo,
+      },
+      {
+        where: {
+          user_id,
+        },
       }
-    });
+    );
 
     return res.status(StatusCode.OK).json({
-      message: ResponseMessage.Updated
-    })
+      message: ResponseMessage.Updated,
+    });
   } catch (error) {
     return res.status(StatusCode.BAD_REQUEST).json({
-      message: ResponseMessage.FailUpdated
-    })
+      message: ResponseMessage.FailUpdated,
+    });
   }
-}
+};
 
 module.exports = {
   Createmakanan,
   GetallMakanan,
-  updateUserProfile
+  updateUserProfile,
+  AddUserProfile
 };
