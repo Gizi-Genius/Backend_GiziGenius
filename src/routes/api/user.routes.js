@@ -2,6 +2,7 @@ const {
   Createmakanan,
   GetallMakanan,
   updateUserProfile,
+  AddUserProfile
 } = require("../../controller/backend/user.controller");
 const {
   findAllUser,
@@ -15,8 +16,7 @@ module.exports = (express, app, default_router) => {
   // Users
   router.get("/users", findAllUser)
   router.put("/user-profile", [authjwt], updateUserProfile);
-
-
+  router.post("/user-profile", [authjwt], AddUserProfile);
 
   //Makanan
   router.post("/makanan", [authjwt], Createmakanan);
