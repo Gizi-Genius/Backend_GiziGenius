@@ -77,6 +77,7 @@ exports.register = async (req, res, next) => {
       try {
         // Buat user di Firebase
         const userRecord = await adminFirebase.auth().createUser({
+          
           email: email,
           password: password,
           displayName: username,
