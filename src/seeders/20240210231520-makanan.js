@@ -94,7 +94,7 @@ module.exports = {
       {
         makanan_id: "03138c85-4fce-4c7d-9ac5-a143f13e2266",
         user_id: "688b119f-ff08-4eb2-a70d-f6f9a891f538",
-        nama_makanan: "Daging sapi (Lemak lumayan banyak)",
+        nama_makanan: "Daging sapi",
         jenis_makanan: "Makanan Pokok",
         kalori: 210,
         protein: 19,
