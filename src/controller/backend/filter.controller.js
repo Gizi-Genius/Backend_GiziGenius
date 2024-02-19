@@ -18,7 +18,29 @@ const findAllUser = (req, res) => {
     });
 };
 
+const CalculateNutrition = async(req, res ) => {
+  try {
+    const totalNutrition = await Makanan.findOne({
+      attributes: [
+        [sequelize.fn("SUM", sequelize.col("protein")), "totalProtein"],
+        [sequelize.fn("SUM", sequelize.col("lemak")), "totalLemak"],
+        [sequelize.fn("SUM", sequelize.col("karbohidrat")), "totalKarbohidrat"],
+      ],
+    });
+    return res.status(StatusCode.OK).json({
+      message: ResponseMessage.Success,
+      data: totalNutrition
+    })
+  } catch (error) {
+    console.error(error);
+    return res.status(StatusCode.INTERNAL_SERVER_ERROR).json({
+      message: ResponseMessage.FailedCalculation
+    })
+  }
+}
+
 module.exports = { 
     searchMakanan,
-    findAllUser
+    findAllUser,
+    CalculateNutrition
 }
