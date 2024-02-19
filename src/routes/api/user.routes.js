@@ -20,7 +20,7 @@ module.exports = (express, app, default_router) => {
 
   //Makanan
   router.post("/makanan/add", [authjwt], Createmakanan);
-  router.get("/makanan", [authjwt], GetallMakanan);
+  router.get("/makanan", GetallMakanan);
 
   app.use(default_router, router);
 };
