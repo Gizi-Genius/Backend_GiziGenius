@@ -1,4 +1,4 @@
-const { Makanan, Users } = require("../../models");
+const { Makanan, Users, Resep } = require("../../models");
 const { StatusCode, ResponseMessage } = require("../../helpers/httpStatus");
 const response = require("../../helpers/response");
 // Makanan
@@ -137,9 +137,24 @@ const updateUserProfile = async (req, res) => {
   }
 };
 
+// Get all Resep
+const GetallResep = (req, res) => {
+  Resep.findAll()
+  .then((result) => {
+    return res.status(StatusCode.OK).json({
+      message: ResponseMessage.Success
+    })
+  }).catch((err) => {
+    return res.status(StatusCode.NOT_FOUND).json({
+      message: ResponseMessage.NotFound
+    })
+  });
+}
+
 module.exports = {
   Createmakanan,
   GetallMakanan,
   updateUserProfile,
-  AddUserProfile
+  AddUserProfile,
+  GetallResep
 };
