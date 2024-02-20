@@ -3,6 +3,7 @@ const {
   GetallMakanan,
   updateUserProfile,
   AddUserProfile,
+  GetallResep,
 } = require("../../controller/backend/user.controller");
 const {
   findAllUser,
@@ -21,6 +22,9 @@ module.exports = (express, app, default_router) => {
   //Makanan
   router.post("/makanan/add", [authjwt], Createmakanan);
   router.get("/makanan", GetallMakanan);
+
+  // Resep
+  router.get("/resep", GetallResep);
 
   app.use(default_router, router);
 };
